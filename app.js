@@ -13,7 +13,7 @@ app.get('/apps', (req, res) => {
     const { sort, genre = "" } = req.query;
 
     if(sort) {
-        if(!['rating', 'app'].includes(sort)) {
+        if(!['Rating', 'App'].includes(sort)) {
             return res
                 .status(400)
                 .send('Sort must be either rating or app');
@@ -33,7 +33,8 @@ app.get('/apps', (req, res) => {
                 app
                     .Genres
                     .toLowerCase()
-                    .includes(genre.toLowerCase()));
+                    .includes(genre.toLowerCase())
+            );
 
     if (sort) {
         results.sort((a, b) => {
@@ -44,6 +45,4 @@ app.get('/apps', (req, res) => {
     res.json(results);
 });
 
-app.listen(8000, () => {
-    console.log('Server started on PORT 8000');
-});
+module.exports = app;
